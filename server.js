@@ -1,6 +1,8 @@
 const express = require('express'); // import express
 const morgan = require('morgan'); // import morgan
 const campsiteRouter = require('./routes/campsiteRouter');
+const promotionRouter = require('./routes/promotionRouter');
+const partnerRouter = require('./routes/partnerRouter');
 
 const hostname = 'localhost';
 const port = 3000;
@@ -11,6 +13,8 @@ app.use(express.json()); //when the server recieves requests with json data in t
 
 // root path is specified here so we don't have to use /campsites in campsiteRouter.js
 app.use('/campsites', campsiteRouter);
+app.use('/promotion', promotionRouter);
+app.use('/partners', partnerRouter);
 
 // store data the client sends after the path / as a route parameter: 
 // app.get('/campsites/:campsiteId', (req, res) => {

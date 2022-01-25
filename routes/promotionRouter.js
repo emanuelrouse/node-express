@@ -1,8 +1,8 @@
 const express = require('express');
-const campsiteRouter = express.Router(); // object named express router that we can use with express methods
+const promotionRouter = express.Router(); // object named express router that we can use with express methods
 
 // chain the methods to the route 
-campsiteRouter.route('/')
+promotionRouter.route('/')
 // used to set properties on each HTTP verb so we don't have to do it multi times
 .all((req, res, next) => {
     res.statusCode = 200;
@@ -12,40 +12,40 @@ campsiteRouter.route('/')
     next();
 })
 .get((req, res) => {
-    res.end('Will send all the campsites to you');
+    res.end('Will send all the promotions to you');
 })
 .post((req, res) => {
    // express.json() middleware will come in handy here 
-    res.end(`Will add the campsite: ${req.body.name} with description: ${req.body.description}`);
+    res.end(`Will add the promotion: ${req.body.name} with description: ${req.body.description}`);
 })
 .put((req, res) => {
-    res.end('Put operations not supported on /campsites');
+    res.end('Put operations not supported on /promotions');
 })
 .delete((req, res) => {
-    res.end('Deleting all campsites');
+    res.end('Deleting all promotions');
 });
 
-campsiteRouter.route('/:campsiteId')
+promotionRouter.route('/:promotionId')
 .all((req, res, next) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     next();
 })
 .get((req, res) => {
-   res.end(`Will send the details of campsite: ${req.params.campsiteId} to you`); 
+   res.end(`Will send the details of promotion: ${req.params.promotionId} to you`); 
 })
 .post((req, res) => {
     res.statusCode = 403;
-    res.end(`POST operation not supported on /campsites/${req.params.campsiteId}`);
+    res.end(`POST operation not supported on /promotions/${req.params.promotionId}`);
 })
 .put((req, res) => {
-    res.write(`Updating the campsite: ${req.params.campsiteId}\n`);
-    res.end(`Will update the campsite: ${req.body.name}
+    res.write(`Updating the promotion: ${req.params.promotionId}\n`);
+    res.end(`Will update the promotion: ${req.body.name}
         with description: ${req.body.description} 
     `);
 })
 .delete((req, res) => {
-    res.end(`Deleting campsite: ${req.params.campsiteId}`);
+    res.end(`Deleting promotion: ${req.params.promotionId}`);
 });
 
-module.exports = campsiteRouter;
+module.exports = promotionRouter;
